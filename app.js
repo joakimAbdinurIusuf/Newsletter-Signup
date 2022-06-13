@@ -7,6 +7,7 @@ const request = require("request");
 const app = express();
 const port = 3000;
 
+app.use(express.static("public"));
 // Adds signup.html to home page
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/signup.html")
