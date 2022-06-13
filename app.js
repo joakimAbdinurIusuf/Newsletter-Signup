@@ -48,7 +48,7 @@ app.post("/", function(req, res) {
     // from the same address.
     // Mailchimp API says, for basic HTTP authentication, --user 'anystring:TOKEN
     // See "The basics" here: https://mailchimp.com/developer/marketing/docs/fundamentals/#the-basics
-    auth: "joakimai:removea09db1e33ea43567d68b437aee9f52d8-us10"
+    auth: "joakimai:a09db1e33ea43567d68b437aee9f52d8-us10"
   }
 
   const request = https.request(url, options, function(response) {
