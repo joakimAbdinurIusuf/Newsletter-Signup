@@ -48,10 +48,16 @@ app.post("/", function(req, res) {
     // from the same address.
     // Mailchimp API says, for basic HTTP authentication, --user 'anystring:TOKEN
     // See "The basics" here: https://mailchimp.com/developer/marketing/docs/fundamentals/#the-basics
-    auth: "joakimai:135a9473232f0b440ff007878680eeeb-us10"
+    auth: "joakimai:a09db1e33ea43567d68b437aee9f52d8-us10"
   }
 
   const request = https.request(url, options, function(response) {
+    if (response.statusCode === 200) {
+      res.sendFile(__dirname + "/success.html")
+    } else {
+      res.sendFile(__dirname + "/failure.html")
+    }
+
     response.on("data", function(data) {
       console.log(JSON.parse(data));
     })
@@ -62,12 +68,16 @@ app.post("/", function(req, res) {
   request.end();
 });
 
+// Redirects user back to signup page if try again is clicked
+app.post("/failure", function(req, res) {
+  res.redirect("/");
+});
+
 // app constant is used to listen to port 3000
-app.listen(port, function() {
+app.listen(process.env.PORT || port, function() {
   console.log("Server is running on port " + port);
 });
 
 
-// API key: 135a9473232f0b440ff007878680eeeb-us10
 
 // List ID: a1445510f2
